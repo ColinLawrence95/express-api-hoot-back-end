@@ -71,7 +71,7 @@ router.get("/", verifyToken, async function (req, res) {
 
 router.get("/:hootId", verifyToken, async function (req, res) {
     try {
-        const hoot = await Hoot.findById(req.params.hootId).populate("author, comments.author");
+        const hoot = await Hoot.findById(req.params.hootId).populate("author", "comments.author");
         res.status(200).json(hoot);
     } catch (error) {
         res.status(500).json({ error: error.message });
